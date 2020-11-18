@@ -106,11 +106,11 @@ def scattered_lsb_flipping(img: np.array, percent: float) -> np.array:
     return result
 
 
-def embed_rate(p_by_2_flipped: np.array, one_p_by_2_flipped: np.array) -> float:
+def find_root(p_by_2_flipped: np.array, one_p_by_2_flipped: np.array):
     """
     :param p_by_2_flipped: Rm, Sm, R-m, S-m values at flipped at p/2 pixels
     :param one_p_by_2_flipped: Rm, Sm, R-m, S-m values at flipped at all pixels
-    :return: estimated embed rate
+    :return: returns required root
     """
     rm_p_by_2, sm_p_by_2, r_neg_p_by_2, s_neg_p_by_2 = p_by_2_flipped
     rm_1_p_by_2, sm_1_p_by_2, r_neg_1_p_by_2, s_neg_1_p_by_2 = one_p_by_2_flipped
@@ -127,9 +127,8 @@ def embed_rate(p_by_2_flipped: np.array, one_p_by_2_flipped: np.array) -> float:
     roots = np.roots([a, b, c])
 
     required_root = roots[1] if abs(roots[0]) > abs(roots[1]) else roots[0]
-    p = required_root / (required_root - .5)
 
-    return p
+    return required_root
 
 
 def rs_helper(channels: list, mask: np.array, flip: bool = False, percent: int = 0) -> np.array:
