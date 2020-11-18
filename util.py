@@ -79,7 +79,7 @@ def calculate_count_groups(img: np.array, mask: np.array) -> tuple:
             else:
                 count_unusable += 1
 
-    total_groups = (count_reg + count_sing + count_unusable) / 100  # divided by 100 for calculation in scale of 0-100
+    total_groups = (count_reg + count_sing + count_unusable)  # for calculation in scale of 0-1
     return count_reg / total_groups, count_sing / total_groups
 
 
