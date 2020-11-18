@@ -85,7 +85,7 @@ def calculate_count_groups(img: np.array, mask: np.array) -> tuple:
 
 def random_string(n: int) -> str:
     """
-    :param n:
+    :param n: size of string to be generated
     :return: returns string with random content
     """
     chars = string.ascii_lowercase
@@ -106,11 +106,11 @@ def scattered_lsb_flipping(img: np.array, percent: float) -> np.array:
     return result
 
 
-def intersection_point(p_by_2_flipped: list, one_p_by_2_flipped: list) -> float:
+def embed_rate(p_by_2_flipped: np.array, one_p_by_2_flipped: np.array) -> float:
     """
     :param p_by_2_flipped: Rm, Sm, R-m, S-m values at flipped at p/2 pixels
     :param one_p_by_2_flipped: Rm, Sm, R-m, S-m values at flipped at all pixels
-    :return: roots of the quadratic equation
+    :return: estimated embed rate
     """
     rm_p_by_2, sm_p_by_2, r_neg_p_by_2, s_neg_p_by_2 = p_by_2_flipped
     rm_1_p_by_2, sm_1_p_by_2, r_neg_1_p_by_2, s_neg_1_p_by_2 = one_p_by_2_flipped
@@ -126,4 +126,30 @@ def intersection_point(p_by_2_flipped: list, one_p_by_2_flipped: list) -> float:
 
     roots = np.roots([a, b, c])
 
-    return abs(roots[0])
+    required_root = roots[1] if abs(roots[0]) > abs(roots[1]) else roots[0]
+    p = required_root / (required_root - .5)
+
+    return p
+
+
+def rs_helper(channels: list, mask: np.array, flip: bool = False, percent: int = 0) -> np.array:
+    """
+    :param channels: Image channels
+    :param mask: Mask for flipping
+    :param flip: If flag is on then lsb_flipping is done else it is assumed the image is already encoded
+    :param percent: percentage to flip
+    :return: list of Rm, Sm, R-m, S-m values
+    """
+    rm, sm, r_neg_m, s_neg_m = 0, 0, 0, 0
+    for channel in channels:
+        if flip:
+            channel = scattered_lsb_flipping(channel, percent)
+        temp_1, temp_2 = calculate_count_groups(channel, mask)
+        rm += temp_1
+        sm += temp_2
+
+        temp_1, temp_2 = calculate_count_groups(channel, -mask)
+        r_neg_m += temp_1
+        s_neg_m += temp_2
+
+    return np.array([rm, sm, r_neg_m, s_neg_m]) / len(channels)

@@ -67,8 +67,6 @@ def calculate_count_groups(img: np.array, mask: np.array) -> tuple:
     for ih in range(0, img.shape[0], mask.shape[0]):
         for iw in range(0, img.shape[1], mask.shape[1]):
             img_window = img[ih: ih + mask.shape[0], iw: iw + mask.shape[1]]  # this is one group
-            if img_window.shape != mask.shape:
-                continue
             flipped_output = flipping_operation(img_window, mask)
 
             discrimination_img_window = discrimination_function(img_window)
@@ -87,7 +85,7 @@ def calculate_count_groups(img: np.array, mask: np.array) -> tuple:
 
 def random_string(n: int) -> str:
     """
-    :param n:
+    :param n: size of string to be generated
     :return: returns string with random content
     """
     chars = string.ascii_lowercase
@@ -108,5 +106,24 @@ def scattered_lsb_flipping(img: np.array, percent: float) -> np.array:
     return result
 
 
-def intersection_point():
-    pass
+def intersection_point(p_by_2_flipped: np.array, one_p_by_2_flipped: np.array) -> np.array:
+    """
+    :param p_by_2_flipped: Rm, Sm, R-m, S-m values at flipped at p/2 pixels
+    :param one_p_by_2_flipped: Rm, Sm, R-m, S-m values at flipped at all pixels
+    :return: roots of the quadratic equation
+    """
+    rm_p_by_2, sm_p_by_2, r_neg_p_by_2, s_neg_p_by_2 = p_by_2_flipped
+    rm_1_p_by_2, sm_1_p_by_2, r_neg_1_p_by_2, s_neg_1_p_by_2 = one_p_by_2_flipped
+
+    d0 = rm_p_by_2 - sm_p_by_2
+    d1 = rm_1_p_by_2 - sm_1_p_by_2
+    d_neg_0 = r_neg_p_by_2 - s_neg_p_by_2
+    d_neg_1 = r_neg_1_p_by_2 - s_neg_1_p_by_2
+
+    a = 2 * (d1 + d0)
+    b = (d_neg_0 - d_neg_1 - d1 - 3 * d0)
+    c = (d0 - d_neg_0)
+
+    roots = np.roots([a, b, c])
+
+    return roots
