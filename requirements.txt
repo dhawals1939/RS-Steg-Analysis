@@ -1,5 +1,4 @@
 opencv-contrib-python
 matplotlib
-string
 numpy
 tqdm
