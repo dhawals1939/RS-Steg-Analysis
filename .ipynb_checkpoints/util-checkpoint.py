@@ -79,14 +79,18 @@ def calculate_count_groups(img: np.array, mask: np.array) -> tuple:
             else:
                 count_unusable += 1
 
-    total_groups = (count_reg + count_sing + count_unusable) / 100  # divided by 100 for calculation in scale of 0-100
+    total_groups = (count_reg + count_sing + count_unusable)  # for calculation in scale of 0-1
     return count_reg / total_groups, count_sing / total_groups
 
 
-def randomString(n):
+def random_string(n: int) -> str:
+    """
+    :param n:
+    :return: returns string with random content
+    """
     chars = string.ascii_lowercase
     return ''.join(random.choice(chars) for _ in range(n))
-s
+
 
 def scattered_lsb_flipping(img: np.array, percent: float) -> np.array:
     """
@@ -100,3 +104,7 @@ def scattered_lsb_flipping(img: np.array, percent: float) -> np.array:
     random_indices_r = np.random.randint(low=0, high=img.shape[0], size=no_pixels_to_change)
     result[random_indices_r, random_indices_c] = np.bitwise_xor(result[random_indices_r, random_indices_c], 1)
     return result
+
+
+def intersection_point():
+    pass
