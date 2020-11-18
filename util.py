@@ -106,5 +106,24 @@ def scattered_lsb_flipping(img: np.array, percent: float) -> np.array:
     return result
 
 
-def intersection_point():
-    pass
+def intersection_point(p_by_2_flipped: list, one_p_by_2_flipped: list) -> float:
+    """
+    :param p_by_2_flipped: Rm, Sm, R-m, S-m values at flipped at p/2 pixels
+    :param one_p_by_2_flipped: Rm, Sm, R-m, S-m values at flipped at all pixels
+    :return: roots of the quadratic equation
+    """
+    rm_p_by_2, sm_p_by_2, r_neg_p_by_2, s_neg_p_by_2 = p_by_2_flipped
+    rm_1_p_by_2, sm_1_p_by_2, r_neg_1_p_by_2, s_neg_1_p_by_2 = one_p_by_2_flipped
+
+    d0 = rm_p_by_2 - sm_p_by_2
+    d1 = rm_1_p_by_2 - sm_1_p_by_2
+    d_neg_0 = r_neg_p_by_2 - s_neg_p_by_2
+    d_neg_1 = r_neg_1_p_by_2 - s_neg_1_p_by_2
+
+    a = 2 * (d1 + d0)
+    b = (d_neg_0 - d_neg_1 - d1 - 3 * d0)
+    c = (d0 - d_neg_0)
+
+    roots = np.roots([a, b, c])
+
+    return abs(roots[0])
