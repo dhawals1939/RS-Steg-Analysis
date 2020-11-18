@@ -2,3 +2,5 @@ opencv-contrib-python
 matplotlib
 numpy==1.19.3
 tqdm
+stepic
+Pillow
