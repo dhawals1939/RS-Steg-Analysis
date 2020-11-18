@@ -125,10 +125,11 @@ def find_root(p_by_2_flipped: np.array, one_p_by_2_flipped: np.array):
     c = (d0 - d_neg_0)
 
     roots = np.roots([a, b, c])
-
-    required_root = roots[1] if abs(roots[0]) > abs(roots[1]) else roots[0]
-
-    return required_root
+    
+    if len(roots) == 1:
+        return roots[0]
+    else:
+        return roots[1] if abs(roots[0]) > abs(roots[1]) else roots[0]
 
 
 def rs_helper(channels: list, mask: np.array, flip: bool = False, percent: int = 0) -> np.array:
