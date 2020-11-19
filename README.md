@@ -1,6 +1,7 @@
-Implementation of ![RS Diagram](https://staff.emu.edu.tr/alexanderchefranov/Documents/CMSE492/Fridrich%20Steganalysis%202001.pdf)
-```Detecting LSB Steganography in Color and Grayscale Images (2001)
-Jessica Fridrich, Miroslav Goljan, and Rui Du``` 
+# Detecting LSB Steganography in Color and Grayscale Images (2001)
+>Jessica Fridrich, Miroslav Goljan, and Rui Du
+
+Implementation of [Paper](https://staff.emu.edu.tr/alexanderchefranov/Documents/CMSE492/Fridrich%20Steganalysis%202001.pdf)
 
 
 ### Installation Instructions
