@@ -8,11 +8,11 @@ pip install -r requirements.txt
 
 The utility functions are written in ```util.py``` and the required functions are imported into the ```Project.ipynb```. Executing the ```Project.ipynb``` cell-by-cell shall the fetch the results.
 
-### Input Images
+## RS Diagram
+>![RS Diagram](./output/output-rs-diagram-img-03.jpg)
 
-[**Link to Input Images folder**](https://drive.google.com/drive/folders/1zlrMBTOyBCjUgDrDovGzNKq638b5bHyG?usp=sharing)
+## Actual Vs Predicted percentage of p
+>![Actual Vs Predicted percentage of p](./output/output-predicted-vs-actual-img-03.jpg)
 
-
-### Output Graphs
-
-[**Link to Output Graphs Folder**](https://drive.google.com/drive/folders/1d07ETYpN2iq-_IKaVGnZBJxVv0m0tgz_?usp=sharing)
+## Curve Fitting the RS Diagram
+>![Curve Fitting the RS Diagram](./output/cute-fit-img-03.jpg)

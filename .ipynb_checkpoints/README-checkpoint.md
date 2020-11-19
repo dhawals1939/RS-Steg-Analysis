@@ -10,9 +10,15 @@ The utility functions are written in ```util.py``` and the required functions ar
 
 ### Input Images
 
-[**Link to Input Images folder**](https://drive.google.com/drive/folders/1zlrMBTOyBCjUgDrDovGzNKq638b5bHyG?usp=sharing)
+[**Link to Input Images folder**](https://github.com/thesigmaguy/RS-Steg-Analysis/tree/master/input)
 
 
 ### Output Graphs
 
-[**Link to Output Graphs Folder**](https://drive.google.com/drive/folders/1d07ETYpN2iq-_IKaVGnZBJxVv0m0tgz_?usp=sharing)
+[**Link to Output Graphs Folder**](https://github.com/thesigmaguy/RS-Steg-Analysis/tree/master/output)
+
+
+![RS Diagram](https://github.com/thesigmaguy/RS-Steg-Analysis/tree/master/output/output-rs-diagram-img-03.jpg)
+
+
+![Actual Vs Predicted percentage of p](https://github.com/thesigmaguy/RS-Steg-Analysis/tree/master/output/output-predicted-vs-actual-img-03.jpg)
